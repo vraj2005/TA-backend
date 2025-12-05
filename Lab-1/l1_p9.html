@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //pattern: Lab-1/l1_p9.html
+        const num = parseInt(prompt("Enter a number:"));
+        let result = "";
+        for (let i = 1; i <= num; i++) {
+            for (let j = 1; j <= num - i; j++) {
+                result += " ";
+            }
+            for (let j = 1; j <= i; j++) {
+                result += "* ";
+            }
+            result += "\n";
+        }
+        document.write( "<pre>" + result + "</pre>" );
+        document.write( "<hr>" );
+        let result1 = "";
+        for (let i = 1; i <= num; i++) {
+            for (let j = 1; j <= i; j++) {
+                result1 += "* ";
+            }
+            result1 += "\n";
+        }
+        document.write( "<pre>" + result1 + "</pre>" );
+        document.write( "<hr>" );
+        let result3 = "";
+        count=1;
+        for (let i = 1; i <= num; i++) {
+            for (let j = 1; j <= i; j++) {
+                result3 += count;
+                count++;
+            }
+            result3 += "\n";
+        }
+        document.write( "<pre>" + result3 + "</pre>" );
+        document.write( "<hr>" );
+        let result4 = "";
+        for (let i = 1; i <= num; i++) {
+            for (let j = 1; j <= num - i; j++) {
+                result4 += " ";
+            }
+            for (let j = 1; j <= (2 * i - 1); j++) {
+                    result4 += "*";
+                }
+            result4 += "\n";
+        }
+        document.write( "<pre>" + result4 + "</pre>" );
+        document.write( "<hr>" );
+        let result5 = "";
+        for (let i = 1; i <= num; i++) {
+            for (let j = 1; j <= num - i; j++) {
+                result5 += " ";
+            }
+            for (let j = 1; j <= (2 * i - 1); j++) {
+                if (j === 1 || j === (2 * i - 1) || i === num) {
+                    result5 += "*";
+                } else {
+                    result5 += " ";
+                }
+            }
+            result5 += "\n";
+        }
+        document.write( "<pre>" + result5 + "</pre>" );
+        document.write( "<hr>" );
+        let result2 = "";
+        for (let i = num; i >= 1; i--) {
+            for (let j = 1; j <= num - i; j++) {
+                result2 += " ";
+            }
+            for (let j = 1; j <= i; j++) {
+                result2 += "*";
+            }
+            result2 += "\n";
+        }
+        document.write( "<pre>" + result2 + "</pre>" );
+    </script>
+</body>
+</html>

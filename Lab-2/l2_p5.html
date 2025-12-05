@@ -1,0 +1,50 @@
+<!doctype html>
+<html><body>
+<script>
+const fruits = ["apple", "banana", "cherry"];
+let list = "";
+for (const f of fruits) {
+  list += f + " ";
+}
+alert("Fruits: " + list.trim());
+
+
+
+const person = {name: "Alice", age: 30, city: "New York"};
+let details = "";
+for (const key in person) {
+  details += key + "=" + person[key] + " ";
+}
+alert("Person: " + details.trim());
+//json format printing
+alert("Person (JSON): " + JSON.stringify(person));
+
+//array of objects
+const students = [
+  {name: "Bob", roll: 1},
+  {name: "Charlie", roll: 2},
+  {name: "David", roll: 3}
+];
+let studentList = "";
+for (const s of students) {
+  studentList += s.name + "(Roll:" + s.roll + ") ";
+}
+alert("Students: " + studentList.trim());
+
+
+</script>
+</body></html>
+
+<!-- diff btw for in and for of: -->
+<!-- 
+const arr = ["apple", "banana", "mango"];
+
+console.log("for...in (indexes):");
+for (let i in arr) {
+  console.log(i);      // 0,1,2
+}
+
+console.log("for...of (values):");
+for (let fruit of arr) {
+  console.log(fruit);  // apple, banana, mango
+} -->

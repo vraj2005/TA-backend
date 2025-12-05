@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script>
+let start = parseInt(prompt("Enter start number:"));
+let end = parseInt(prompt("Enter end number:"));
+
+let result = "";
+
+if (isNaN(start) || isNaN(end)) {
+    alert("Invalid input");
+} else {
+
+    if (start > end) {
+        let temp = start;
+        start = end;
+        end = temp;
+    }
+
+    for (let num = start; num <= end; num++) {
+        if (num < 2) continue;
+
+        let isPrime = true;
+        for (let i = 2; i * i <= num; i++) {
+            if (num % i === 0) {
+                isPrime = false;
+                break;
+            }
+        }
+        if (isPrime) {
+            result += num + " ";
+        }
+    }
+
+    alert("Prime numbers between " + start + " and " + end + ":\n" + (result || "None"));
+}
+</script>
+</body>
+</html>

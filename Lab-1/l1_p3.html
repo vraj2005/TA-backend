@@ -1,0 +1,13 @@
+<!doctype html>
+<html><body>
+<script>
+const n = parseInt(prompt("Enter a non-negative integer:"));
+if (isNaN(n) || n < 0) {
+  alert("Invalid input");
+} else {
+  let fact = 1;
+  for (let i = 2; i <= n; i++) fact *= i;
+  alert(`Factorial of ${n} is ${fact}`);
+}
+</script>
+</body></html>

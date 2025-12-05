@@ -1,0 +1,19 @@
+<!doctype html>
+<html><body>
+<script>
+let arr1 = [1,2,3];
+let arr2 = [0, ...arr1, 4];    // spread array
+alert("arr2: " + arr2.join(","));
+
+let obj1 = {a:1, b:2};
+let obj2 = {...obj1, c:3};    
+alert("obj2: " + JSON.stringify(obj2));// spread object
+alert("obj2.a = " + obj2.a + ", obj2.c = " + obj2.c);
+
+const ob = {name: 'Vraj', age: 20};
+const obj = {city: 'Morbi', age: 21};
+const merged = {...ob, ...obj}; // age overridden by obj2
+alert("merged: " + JSON.stringify(merged));
+
+</script>
+</body></html>

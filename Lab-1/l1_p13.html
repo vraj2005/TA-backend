@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script>
+let word = prompt("Enter a word:");
+
+if (word === null) {
+    alert("Cancelled");
+} else {
+    let w = word.trim();
+    let first = -1;
+    let last = -1;
+
+    // Find first occurrence of 'a'
+    for (let i = 0; i < w.length; i++) {
+        if (w[i] === 'a') {
+            first = i;
+            break;
+        }
+    }
+
+    // Find last occurrence of 'a'
+    for (let i = w.length - 1; i >= 0; i--) {
+        if (w[i] === 'a') {
+            last = i;
+            break;
+        }
+    }
+
+    if (first === -1) {
+        alert("'a' not found in the word");
+    } 
+    else if (first === last) {
+        alert("Only one 'a' found at position " + (first + 1) + ". No string between them.");
+    }
+    else {
+        let between = "";
+
+        // Build substring between first and last
+        for (let i = first + 1; i < last; i++) {
+            between += w[i];
+        }
+
+        alert(
+            "First occurrence: " + (first + 1) +
+            "\nLast occurrence: " + (last + 1) +
+            "\nString between: \"" + between + "\""
+        );
+    }
+}
+</script>
+</body>
+</html>
+--- with function ---
+<!doctype html>
+<html><body>
+<script>
+const word = prompt("Enter a word:");
+if (word === null) alert("Cancelled");
+else {
+  const w = word.trim();
+  const first = w.indexOf('a');
+  const last = w.lastIndexOf('a');
+  if (first === -1) {
+    alert("'a' not found in the word");
+  } else if (first === last) {
+    alert("Only one 'a' found at position " + (first+1) + ". No string between.");
+  } else {
+    const between = w.substring(first+1, last); // returns characters between
+    alert(`First occurrence: ${first+1}\nLast occurrence: ${last+1}\nString between: "${between}"`);
+  }
+}
+</script>
+</body></html>

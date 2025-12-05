@@ -1,0 +1,113 @@
+1. Create folder npm-lab-1 and initialize Node project
+    mkdir npm-lab-1
+    cd npm-lab-1
+    npm init          # will ask questions
+
+2. Difference between npm init and npm init -y
+    --npm init:
+
+        Starts an interactive setup
+
+        Asks questions:
+        name, version, description, entry point, author, license…
+
+        You must press Enter for each question.
+
+    --npm init -y:
+
+        -y means "yes to all defaults"
+
+        Automatically creates package.json with default values
+
+        No questions asked
+
+        Fastest method for creating project
+
+3. Install package cors locally
+    npm install cors
+
+4. Install nodemon globally
+    npm install -g nodemon
+
+    Nodemon is a tool used in Node.js development that automatically restarts your server whenever 
+    you change your code.
+
+5. Install express version 4.21.1 locally
+    npm install express@4.21.1
+
+6. Update already installed old version of express
+    npm update express
+           OR
+    npm install express@latest
+
+7. Uninstall all locally installed packages
+    npm uninstall $(ls node_modules)
+                OR
+    npm uninstall cors express
+
+
+8. Uninstall global nodemon
+    npm uninstall -g nodemon
+
+9. Practice installing multiple packages using package.json
+    Step 1: Add dependencies in package.json
+        "dependencies": {
+            "cors": "^2.8.5",
+            "express": "^4.21.1",
+            "dotenv": "^16.0.0"
+        }
+
+    Step 2: Install everything with one command
+        npm install
+
+10. Detailed Note on package.json
+    package.json is the core file of any Node.js project. It works like a project manifest that stores information about your application.
+
+    1. Basic Project Metadata:
+        Includes:
+            name – name of project
+            version – current version
+            description – summary
+            author – developer name
+            license – usage license
+            main – entry file (default: index.js)
+
+    2. Manages Dependencies(Packages required for project)
+        "dependencies": {
+            "express": "^4.21.1"
+        }
+
+    command --- npm install
+
+    3. Dev Dependencies
+        Used only in development:
+            "devDependencies": {
+                "nodemon": "^3.0.0"
+            }
+
+    4. Scripts
+        Used to automate commands:
+
+        "scripts": {
+            "start": "node app.js",
+            "dev": "nodemon app.js"
+        }
+
+        Run using: npm run dev
+
+    5.Controls Package Versions
+
+        Version example:
+            ^4.21.1 → allows minor updates
+            ~4.21.1 → allows patch updates
+            4.21.1 → fixed version
+
+    6. Helps Others Rebuild the Project
+
+        With package.json, anyone can run : npm install
+
+11. List all local packages
+    npm list --depth=0
+
+
+

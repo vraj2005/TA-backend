@@ -1,0 +1,2 @@
+Hello (async) appended text (Sync).
+ appended text (Async).

@@ -1,0 +1,15 @@
+<!doctype html>
+<html><body>
+<script>
+function yourname(name) {
+  alert("Hello, " + name + "!");
+}
+
+function askName(cb) {             
+  const name = prompt("Enter your name:");
+  cb(name);
+}
+
+askName(yourname);
+</script>
+</body></html>

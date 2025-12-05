@@ -1,0 +1,27 @@
+<!doctype html>
+<html><body>
+<script>
+// Array destructuring
+const nums = [10, 20, 30];
+const [a, b, c] = nums;   // a=10, b=20, c=30
+alert(a + " " + b + " " + c);
+
+// Object destructuring
+const person = {name: "Vraj", age: 20, city: "Morbi"};
+const {name, age, city} = person;  // name="Vraj", age=20,   city="Morbi"
+alert(name + " from " + city + " is " + age + " years old.");
+// Default values & rest in destructuring
+// const [x, ...rest] = [1,2,3,4];
+// alert("x=" + x + ", rest=" + rest.join(","));
+
+//array of object destructuring
+const students = [
+  {name: "Bob", roll: 1},
+  {name: "Charlie", roll: 2},
+  {name: "David", roll: 3}
+];
+for (const {name, roll} of students) {
+  alert(name + " has roll number " + roll);
+}
+</script>
+</body></html>

@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Simple Calculator</title></head>
+<body>
+<script>
+const a = parseFloat(prompt("Enter first number:"));
+const b = parseFloat(prompt("Enter second number:"));
+const op = prompt("Enter operation (+, -, *, /, %):");
+
+  let res;
+  switch(op) {
+    case '+': res = a + b; break;
+    case '-': res = a - b; break;
+    case '*': res = a * b; break;
+    case '/': res = b === 0 ? "Division by zero" : a / b; break;
+    case '%': res = a % b; break;
+    default: res = "Invalid operation";
+  }
+  alert(`Result: ${res}`);
+
+</script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Snake Game</title></head>
+<body>
+<canvas id="game" width="400" height="400" style="border:1px solid #000"></canvas>
+<script>
+const cvs = document.getElementById('game');
+const ctx = cvs.getContext('2d');
+const size = 20;            // cell size
+let cols = cvs.width / size, rows = cvs.height / size;
+let snake = [{x:5,y:5},{x:4,y:5},{x:3,y:5}];
+let dir = {x:1,y:0};
+let food = {x:10,y:10};
+let gameOver = false;
+
+function placeFood(){
+  food.x = Math.floor(Math.random()*cols);
+  food.y = Math.floor(Math.random()*rows);
+  // avoid food on snake
+  for (let s of snake) if (s.x===food.x && s.y===food.y) placeFood();
+}
+
+function update(){
+  if (gameOver) return;
+  // move head
+  const head = {x: snake[0].x + dir.x, y: snake[0].y + dir.y};
+  // wrap around
+  head.x = (head.x + cols) % cols;
+  head.y = (head.y + rows) % rows;
+  // collision with body
+  for (let s of snake) if (s.x===head.x && s.y===head.y) { gameOver = true; return; }
+  snake.unshift(head);
+  // eat food?
+  if (head.x === food.x && head.y === food.y) placeFood(); else snake.pop();
+}
+
+function draw(){
+  ctx.fillStyle = "white"; ctx.fillRect(0,0,cvs.width,cvs.height);
+  // food
+  ctx.fillStyle = "red"; ctx.fillRect(food.x*size, food.y*size, size, size);
+  // snake
+  ctx.fillStyle = "green";
+  for (let s of snake) ctx.fillRect(s.x*size, s.y*size, size-1, size-1);
+  if (gameOver) {
+    ctx.fillStyle="rgba(0,0,0,0.6)";
+    ctx.fillRect(0,0,cvs.width,cvs.height);
+    ctx.fillStyle="white"; ctx.font="24px sans-serif";
+    ctx.fillText("Game Over", cvs.width/2-60, cvs.height/2);
+  }
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === "ArrowUp" && dir.y===0) { dir={x:0,y:-1}; }
+  if (e.key === "ArrowDown" && dir.y===0) { dir={x:0,y:1}; }
+  if (e.key === "ArrowLeft" && dir.x===0) { dir={x:-1,y:0}; }
+  if (e.key === "ArrowRight" && dir.x===0) { dir={x:1,y:0}; }
+  if (e.key === "r" && gameOver) { // restart
+    snake = [{x:5,y:5},{x:4,y:5},{x:3,y:5}];
+    dir = {x:1,y:0}; gameOver=false; placeFood();
+  }
+});
+
+placeFood();
+setInterval(()=>{ update(); draw(); }, 100);
+</script>
+</body>
+</html>

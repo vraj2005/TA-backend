@@ -1,0 +1,24 @@
+<!doctype html>
+<html><body>
+<div id="rolls">
+  <label><input type="checkbox" value="101"> 101</label><br>
+  <label><input type="checkbox" value="102"> 102</label><br>
+  <label><input type="checkbox" value="103"> 103</label><br>
+  <label><input type="checkbox" value="104"> 104</label><br>
+</div>
+<p>Selected: <span id="selected"></span></p>  
+
+<script>
+const selectedSpan = document.getElementById('selected');
+const checkboxes = document.querySelectorAll('#rolls input[type="checkbox"]');
+
+function updateSelected() {
+  const vals = [];
+  checkboxes.forEach(cb => { if (cb.checked) vals.push(cb.value); });
+  selectedSpan.textContent = vals.join(", ");
+}
+
+checkboxes.forEach(cb => cb.addEventListener('change', updateSelected));
+updateSelected(); // initial
+</script>
+</body></html>

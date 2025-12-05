@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+function testScope() {
+    if (true) {
+        var x = 10; // function-scoped
+        let y = 20; // block-scoped
+    }
+
+    console.log("x (var):", x);  
+    console.log("y (let):", y);  
+}
+testScope();
+</script>
+
+</body>
+</html>
