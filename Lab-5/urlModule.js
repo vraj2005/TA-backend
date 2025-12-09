@@ -2,7 +2,7 @@ const url = require("url");
 
 const inputURL = "https://example.com:8090/users/profile?id=10&name=arjun";
 
-const parsed = url.parse(inputURL, true);
+// const parsed = url.parse(inputURL, true);
 // console.log(parsed)
 
 // console.log("Protocol:", parsed.protocol);
