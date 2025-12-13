@@ -1,0 +1,11 @@
+Content of info.txt (Sync):
+<file content here>
+This will print AFTER file is read (Sync)
+heelop sjhk r,kfjn xnc bmbm
+
+
+
+
+This will print BEFORE file is read (Async)
+Content of info.txt (Async):
+<file content here>
