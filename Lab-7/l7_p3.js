@@ -8,7 +8,7 @@ http.createServer((req, res) => {
         res.end(fs.readFileSync('home.txt'))
     }
     else if (req.url === '/about') {
-        res.end(fs.readFileSync('about.txt'))
+        res.end(fs.readFileSync('about.html'))
     }
     else if (req.url === '/contact') {
         res.end(fs.readFileSync('contact.txt'))
