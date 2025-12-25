@@ -1,0 +1,73 @@
+Middleware is a function that runs between the request and the
+response.
+
+Request → Middleware → Route → Response
+
+Middleware is a function that processes the request before it reaches the route handler or before the response is sent.
+
+Example
+(app or router).use((req, res, next) => {
+    // code
+    next();
+});
+
+next() → passes control to next middleware or route
+If next() is NOT called → request stops
+
+Middleware is used to:
+-log requests
+-parse request body
+-authentication & authorization
+-validate data
+-handle errors
+-modify request/response
+
+Type of Middleware
+-->Built-in Middleware Example
+app.use(express.json());
+
+Parses JSON request body
+Makes req.body available
+
+-->Custom Middleware (Application-level)
+const express = require("express");
+const app = express();
+
+// Custom Middleware
+app.use((req, res, next) => {
+    console.log("Middleware executed");
+    console.log("Request URL:", req.url);
+    next(); // go to next middleware or route
+});
+
+app.get("/", (req, res) => {
+    res.send("Home Page");
+});
+
+app.get("/about", (req, res) => {
+    res.send("About Page");
+});
+
+app.listen(3000, () => {
+    console.log("Server running");
+});
+
+
+--> Route-level Middleware
+function authMiddleware(req, res, next) {
+    if (req.query.admin === "true") {
+        next();
+    } else {
+        res.send("Access Denied");
+    }
+}
+
+app.get("/admin", authMiddleware, (req, res) => {
+    res.send("Welcome Admin");
+});
+
+/admin?admin=true   → allowed
+/admin              → denied
+
+
+http://localhost:3000/admin?admin=true

@@ -14,13 +14,14 @@ app.get('/', (req, res) => {
 }); 
  
 app.get('/about', (req, res) => { 
-    fs.readFile('about.html', (err, data) => { 
-        if (err) { 
-            res.status(500).send(err); 
-        } else { 
-            res.status(200).type('text/html').send(data); 
-        } 
-    }); 
+    // fs.readFile('about.html', (err, data) => { 
+    //     if (err) { 
+    //         res.status(500).send(err); 
+    //     } else { 
+    //         res.status(200).type('text/html').send(data); 
+    //     } 
+    // }); 
+    res.send('<h1>About Us</h1><p>This is the about page.</p>');
 }); 
  
 app.get('/contact', (req, res) => { 

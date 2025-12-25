@@ -14,11 +14,12 @@ app.get('/', (req, res) => {
 }); 
  
 app.get('/about', (req, res) => { 
+    res.send('<h1>About Us</h1><p>This is the about page.</p>');
     fs.readFile('about.txt', (err, data) => { 
         if (err) { 
             res.status(500).send(err); 
         } else { 
-            res.status(200).type('text/html').send(data); 
+            res.status(200).send(data); 
         } 
     }); 
 }); 
@@ -33,6 +34,10 @@ app.get('/contact', (req, res) => {
     }); 
 }); 
  
+app.post("/login", (req, res) => {
+  res.send("Login Successful");
+});
+
 app.listen(PORT, () => { 
     console.log(`Server started on port ${PORT}`); 
 });
