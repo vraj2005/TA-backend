@@ -1,0 +1,42 @@
+Mongoose is a library (ODM) that makes working with MongoDB easier and 
+more structured in Node.js applications.
+
+it Prodives:
+-a schema-based structure
+-easy CRUD operations
+-validation
+-relationships
+-middleware (hooks)
+
+Why do we need Mongoose?
+MongoDB is schema-less, meaning:
+-you can store anything
+-no fixed structure
+-easy to make mistakes
+
+Mongoose adds:
+-structure
+-rules
+-validation
+
+->Without Mongoose
+    db.users.insertOne({ name: "Vraj", age: "twenty" });
+
+    --Age should be number, but MongoDB allows it.
+
+->With Mongoose
+    const userSchema = new mongoose.Schema({
+        name: String,
+        age: Number
+    });
+
+    --"twenty" will be rejected.
+
+
+---Function---
+->mongoose.model() 
+creates a model that represents a MongoDB collection and provides methods to 
+create, read, update, and delete documents.
+
+->mongoose.Schema()
+Define you Schema
