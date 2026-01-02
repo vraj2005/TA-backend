@@ -1,0 +1,22 @@
+JWT is a token-based authentication mechanism used to securely transmit user information between client and server.
+
+3 parts
+HEADER.PAYLOAD.SIGNATURE
+
+Flow
+Client → Login → Server
+Server → JWT Token → Client
+Client → Request + Token → Server
+Server → Verify Token → Allow / Deny
+
+npm install jsonwebtoken
+
+How it works in Ecommerce 
+
+User Login
+Server verifies user
+JWT Token generated
+Token stored in client
+Token sent with every request
+Server verifies token
+Allow access (cart, orders, payment)
