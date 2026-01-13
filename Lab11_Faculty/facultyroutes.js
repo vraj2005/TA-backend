@@ -17,9 +17,24 @@ app.post("/", async (req, res) => {
 // READ All Faculty
 app.get("/", async (req, res) => {
     try {
-        const faculty = await Faculty.find();
-        res.json(faculty);
-    } catch (error) {
+        const { n, page = 1, limit = 5 } = req.query;
+        let filter = {};
+        if (n) {
+            filter.name = { $regex: n, $options: "i" };
+        }
+        const skip = (page - 1) * limit;
+        const data = await Faculty.find(filter)
+            .skip(skip)
+            .limit(parseInt(limit));
+        const total = await Faculty.countDocuments(filter);
+        res.json({
+            totalRecords: total,
+            page: Number(page),
+            limit: Number(limit),
+            data
+        });
+
+    } catch (error) { 
         res.status(500).json({ error: error.message });
     }
 });
