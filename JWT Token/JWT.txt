@@ -1,7 +1,28 @@
 JWT is a token-based authentication mechanism used to securely transmit user information between client and server.
 
 3 parts
-HEADER.PAYLOAD.SIGNATURE
+HEADER-token type and algorithum
+PAYLOAD-user information(user ID, role, etc)
+SIGNATURE-protects the token from being changed
+
+How does JWT work?
+
+1. The user logs in using a username and password. The server checks the credentials.
+2. The server creates a JWT with your user ID or username and signs it.
+3. On the frontend, the JWT is stored in localStorage, sessionStorage, or cookies.
+4. Whenever you send a request to the backend, this JWT is sent along with it to verify your identity.
+5. If the token is valid, access is granted. If not, access is denied.
+
+Developers like JWT because it is:
+
+1. Stateless
+2. Lightweight
+3. Widely supported
+4. Secure
+5. Suitable for different architectures
+
+Fact:
+JWT is encoded, not encrypted. So never store sensitive information inside a JWT while building applications.
 
 Flow
 Client → Login → Server
