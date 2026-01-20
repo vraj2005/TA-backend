@@ -33,7 +33,6 @@ app.get("/", async (req, res) => {
             limit: Number(limit),
             data
         });
-
     } catch (error) { 
         res.status(500).json({ error: error.message });
     }
