@@ -1,0 +1,208 @@
+What is Next.js?
+
+Next.js is a React-based full-stack web application framework created by Vercel.
+It enhances React by providing a structured way to build:
+
+Server-rendered applications
+Static websites
+Full-stack applications (frontend + backend)
+SEO-friendly, scalable, and optimized web apps
+
+Next.js adds powerful features that React alone does not provide, such as routing, server components, 
+server-side rendering, API routes, and build-time optimizations.
+
+
+1. Setup a Next.js Project Using npx create-next-app@latest (A)
+
+To create a new Next.js project:
+Run Command:-----npx create-next-app@latest
+
+Answer Prompts (TypeScript, Tailwind, etc.)
+
+Next.js automatically installs:
+
+React
+TypeScript (optional)
+ESLint
+SWC compiler
+Project structure
+App Router (app/ folder)
+Once setup completes:
+
+Start Development Server
+npm run dev
+
+
+Your Next.js app runs at:
+👉 http://localhost:3000
+
+
+
+2. Explore Default Project Structure (A)
+
+After creating a project, the main structure looks like:
+project-folder/
+│
+├── app/
+│   ├── page.tsx
+│   ├── layout.tsx
+│   ├── globals.css
+│
+├── public/
+├── node_modules/
+├── package.json
+├── next.config.mjs
+├── tsconfig.json
+└── .gitignore
+
+
+| File/Folder       | Purpose                             |
+| ----------------- | ----------------------------------- |
+| `app/`            | Routing system using the App Router |
+| `page.tsx`        | Default home page                   |
+| `layout.tsx`      | Common layout wrapper               |
+| `globals.css`     | Global CSS file                     |
+| `public/`         | Static assets                       |
+| `next.config.mjs` | Framework configuration             |
+| `package.json`    | Scripts + dependencies              |
+| `tsconfig.json`   | TypeScript configuration            |
+
+
+3. Modify page.tsx to Display "Hello World…" (A)
+
+Inside app/page.tsx:
+export default function Home() {
+  return (
+    <h1>Hello World from Next Application</h1>
+  );
+}
+
+
+4. Detailed Note on Project Structure of a Next.js Application (B)
+
+
+A Next.js application follows a well-organized project structure that helps developers manage pages, components, APIs, 
+and configurations efficiently. The structure is designed to simplify routing, state management, styling, and server-side rendering.
+
+1. app/ Directory (Main Routing System)
+
+The app/ folder is the core of Next.js (version 13+), known as the App Router.
+It enables:
+File-based routing
+Nested layouts
+Server Components by default
+Advanced rendering (SSR, SSG, ISR)
+
+Main files inside the app folder:
+a) page.tsx
+Represents the content of a route.
+Example:
+app/about/page.tsx → URL: /about
+
+b) layout.tsx
+Defines a shared layout for all routes inside that folder
+
+Includes navbar, footer, metadata, etc.
+
+c) loading.tsx
+Fallback UI shown while the page loads.
+
+d) error.tsx
+Used for error handling at route level.
+
+e) template.tsx
+For re-rendering layouts when needed.
+
+f) Route Handlers (route.ts)
+Used to create backend APIs inside the app router.
+Works like Express:
+
+export function GET() {}
+export function POST() {}
+
+2. public/ Directory
+
+Contains static assets such as images, icons, and static files.
+
+Examples:
+
+favicon.ico
+Images (/public/profile.png)
+Robots.txt
+Files inside public can be accessed directly by path without import.
+
+3. styles/ or globals.css
+
+The global CSS file loaded once throughout the application.
+Located in:
+
+app/globals.css
+Contains base styles and resets.
+
+4. components/ Directory (Optional)
+
+Developers often create a components folder to store reusable UI elements:
+
+components/
+  Navbar.tsx
+  Footer.tsx
+  Button.tsx
+
+These components are imported into pages or layouts.
+
+5. lib/ Directory (Optional)
+
+Stores helper functions, utilities, data fetching logic, and database connections.
+Example:
+
+lib/
+  db.ts
+  auth.ts
+  fetcher.ts
+
+6. next.config.mjs
+
+Configuration file for customizing Next.js features.
+Used for:
+
+Enabling image domains
+Custom headers
+Redirects
+Experimental features
+Webpack configuration
+
+7. package.json
+
+Contains:
+
+Dependencies
+Scripts (dev, build, start)
+Version information
+Project metadata
+
+8. tsconfig.json
+
+TypeScript configuration file.
+Defines:
+
+Path aliases
+Strict mode
+Compiler rules
+JSX environment
+
+9. node_modules/ Directory
+
+Contains all installed libraries and dependencies.
+
+10. API Routes
+
+Next.js supports backend creation in two ways:
+
+a) App Router API
+app/api/users/route.ts
+
+b) Pages Router API (older method)
+pages/api/users.js
+
+
+These endpoints return JSON responses and behave like Express routes.
