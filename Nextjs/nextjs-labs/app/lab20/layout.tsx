@@ -1,5 +1,5 @@
 import Link from "next/link";
-import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/css/bootstrap.min.css"; //import it if using bootstrap
 
 export default function Lab20Layout({ children }: { children: React.ReactNode }) {
   return (
