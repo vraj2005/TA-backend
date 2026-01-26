@@ -15,7 +15,7 @@ app.post("/", async (req, res) => {
 });
 
 // READ All Faculty
-app.get("/", async (req, res) => {
+app.get("/", async (req, res) => {  
     try {
         const { n, page = 1, limit = 5 } = req.query;
         let filter = {};
