@@ -1,15 +1,17 @@
 What is Next.js?
 
-Next.js is a React-based full-stack web application framework created by Vercel.
-It enhances React by providing a structured way to build:
+Next.js is a React-based full-stack web application framework 
+created by Vercel. It enhances React by providing a structured 
+way to build:
 
 Server-rendered applications
 Static websites
 Full-stack applications (frontend + backend)
 SEO-friendly, scalable, and optimized web apps
 
-Next.js adds powerful features that React alone does not provide, such as routing, server components, 
-server-side rendering, API routes, and build-time optimizations.
+Next.js adds powerful features that React alone does not provide, 
+such as routing, server components, server-side rendering, API routes, 
+and build-time optimizations.
 
 
 1. Setup a Next.js Project Using npx create-next-app@latest (A)
@@ -81,8 +83,11 @@ export default function Home() {
 4. Detailed Note on Project Structure of a Next.js Application (B)
 
 
-A Next.js application follows a well-organized project structure that helps developers manage pages, components, APIs, 
-and configurations efficiently. The structure is designed to simplify routing, state management, styling, and server-side rendering.
+A Next.js application follows a well-organized project structure that 
+helps developers manage pages, components, APIs, 
+and configurations efficiently. 
+The structure is designed to simplify routing, state management, 
+styling, and server-side rendering.
 
 1. app/ Directory (Main Routing System)
 
@@ -206,3 +211,83 @@ pages/api/users.js
 
 
 These endpoints return JSON responses and behave like Express routes.
+
+
+nextjs-lab-project/
+│
+├── app/
+│   ├── lab20/               # Basic Routes & Navigation
+│   │    ├── home/page.tsx
+│   │    ├── about/page.tsx
+│   │    ├── contact/page.tsx
+│   │    └── layout.tsx
+│   │
+│   ├── lab21/               # CSS & Templates
+│   │    ├── template1/page.tsx
+│   │    ├── template2/page.tsx
+│   │    ├── template3/page.tsx
+│   │    └── styles/
+│   │
+│   ├── lab22/               # Route Groups & Dynamic Routes
+│   │    ├── (auth)/login/page.tsx
+│   │    ├── (admin)/dashboard/page.tsx
+│   │    ├── (client)/profile/page.tsx
+│   │    ├── dynamic/[id]/page.tsx
+│   │    ├── dynamic-range/[start]/[end]/page.tsx
+│   │    └── pagination/[pageNo]/page.tsx
+│   │
+│   ├── lab23/               # Intercepting & Route Handlers
+│   │    ├── feed/@modal/page.tsx
+│   │    ├── feed/page.tsx
+│   │    └── api/items/route.ts
+│   │
+│   ├── lab24/               # Middleware
+│   │    ├── page.tsx
+│   │    ├── dashboard/page.tsx
+│   │    ├── login/page.tsx
+│   │
+│   ├── lab25/               # MockAPI Data Fetching
+│   │    ├── users/page.tsx
+│   │    ├── users/[id]/page.tsx
+│   │    ├── products/page.tsx
+│   │    └── products/[id]/page.tsx
+│   │
+│   ├── lab26/               # Database (MySQL, PostgreSQL, MongoDB)
+│   │    ├── mysql/page.tsx
+│   │    ├── postgres/page.tsx
+│   │    └── mongo/page.tsx
+│   │
+│   ├── lab27/               # Prisma ORM
+│   │    ├── users/page.tsx
+│   │    ├── tasks/page.tsx
+│   │    ├── tasks/[userId]/page.tsx
+│   │
+│   ├── lab28/               # Server Actions
+│   │    ├── form/page.tsx
+│   │    └── actions.ts
+│   │
+│   ├── lab29/               # Client Components + Delete
+│   │    ├── client-component/page.tsx
+│   │    ├── calculator/page.tsx
+│   │    ├── snake-game/page.tsx
+│   │
+│   ├── lab30/               # Insert/Update + Testing
+│   │    ├── register/page.tsx
+│   │    ├── add-task/page.tsx
+│   │    ├── change-password/page.tsx
+│   │    ├── edit-task/[id]/page.tsx
+│   │    ├── tests/
+│   │    │     ├── jest.test.js
+│   │    │     ├── vitest.test.js
+│   │    │     └── playwright.spec.ts
+│   │
+│   ├── layout.tsx           # Global Layout
+│   └── page.tsx             # Home
+│
+├── prisma/
+│   └── schema.prisma        # Lab 27–30
+│
+├── middleware.ts            # Lab 24
+|
+├── next.config.mjs          # Lab 24 (Explore)
+└── package.json
