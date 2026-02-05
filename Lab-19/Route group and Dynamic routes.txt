@@ -1,0 +1,224 @@
+1. What is a Route Group in Next.js?**
+
+A Route Group is a folder wrapped in round brackets ( ) that is used to organize routes and apply layouts without affecting the URL.
+
+--Route group folder name does NOT appear in the browser URL.
+
+---
+
+Why Route Groups are used
+
+To organize large projects
+To separate auth, admin, client areas
+To apply different layouts
+To keep URLs clean
+
+**Example of Route Group**
+
+Folder Structure
+app/
+ └── (auth)/
+      └── login/
+           └── page.tsx
+
+export default function LoginPage() {
+  return <h1>Login Page</h1>;
+}
+
+-----URL
+/login
+
+❌ NOT /auth/login
+✔ Route group (auth) is ignored in URL
+
+---
+ **Route Group with Different Layouts**
+Folder Structure
+
+app/
+ ├── (admin)/
+ │     ├── layout.tsx
+ │     └── dashboard/page.tsx
+ │
+ └── (client)/
+       ├── layout.tsx
+       └── profile/page.tsx
+
+Each group has its "own layout", but URLs remain clean.
+
+Real-World Example: E-Commerce Application
+Folder Structure
+app/
+ ├── (auth)/
+ │     ├── login/page.tsx
+ │     └── register/page.tsx
+ │
+ ├── (admin)/
+ │     ├── dashboard/page.tsx
+ │     ├── products/page.tsx
+ │     └── orders/page.tsx
+ │
+ ├── (client)/
+ │     ├── home/page.tsx
+ │     ├── product/[id]/page.tsx
+ │     └── cart/page.tsx
+---
+
+> Route groups in Next.js are used to organize routes and apply layouts without changing the URL structure.
+
+---
+
+2. What is a Dynamic Route in Next.js?
+
+Dynamic Routeallows passing "parameters through the URL" using "square brackets `[ ]`".
+
+These parameters can be accessed inside the page using `params`.
+
+---
+
+Why Dynamic Routes are used
+
+* User profiles (`/user/101`)
+* Product details (`/product/5`)
+* Pagination (`/page/2`)
+* Filtering (`/price/100/500`)
+
+---
+
+Example 1: Dynamic Route with `id`
+Folder Structure
+
+app/
+ └── user/
+      └── [id]/
+           └── page.tsx
+
+page.tsx
+export default function UserPage({ params }: { params: { id: string } }) {
+  return <h1>User ID: {params.id}</h1>;
+}
+
+/user/101
+
+
+Example 2: Dynamic Route with multiple parameters
+
+Folder Structure
+
+app/
+ └── range/
+      └── [start]/
+           └── [end]/
+                └── page.tsx
+
+
+page.tsx
+export default function RangePage({
+  params,
+}: {
+  params: { start: string; end: string };
+}) {
+  return (
+    <h1>
+      Start: {params.start}, End: {params.end}
+    </h1>
+  );
+}
+
+/range/10/50
+
+
+> Dynamic routes in Next.js allow passing parameters through the URL using square brackets and accessing them via the params object.
+
+---
+
+Difference Between Route Group and Dynamic Route
+
+| Feature        | Route Group        | Dynamic Route       |
+| -------------- | ------------------ | ------------------- |
+| Purpose        | Organize routes    | Pass URL parameters |
+| Syntax         | `(group)`          | `[param]`           |
+| Appears in URL | ❌ No              | ✅ Yes             |
+| Used for       | Layout & structure | Data-driven pages   |
+
+
+What is a Promise?
+
+A Promise in JavaScript is an object that represents a value that will be available in the future, not immediately.
+It is used for asynchronous operations
+
+Some tasks do not finish instantly, for example:
+Fetching data from server
+Reading files
+Database queries
+API calls
+Getting route params in modern Next.js
+
+Real-life analogy
+->Amazon order
+You place order → you get a promise
+Later → order delivered or failed
+States:
+Pending → Order processing
+Fulfilled → Delivered
+Rejected → Cancelled / failed
+Same with Promise.
+
+A Promise has 3 states:
+State	Meaning
+Pending:Operation is still running
+Fulfilled:Operation completed successfully
+Rejected:Operation failed
+
+
+Why Promise is important in Next.js
+
+In modern Next.js:
+Data fetching
+Route params
+Headers
+Cookies
+Server actions
+->All are async
+
+params: Promise<{ id: string }>
+const { id } = await params;
+
+
+
+Lab-22 1-A
+app/lab22/
+ ├── (auth)/
+ │     └── login/
+ │           └── page.tsx
+ │
+ ├── (admin)/
+ │     └── dashboard/
+ │           └── page.tsx
+
+
+1-C
+app/lab22/
+ ├── (auth)/
+ │     ├── layout.tsx
+ │     └── login/page.tsx
+ │
+ ├── (admin)/
+ │     ├── layout.tsx
+ │     └── dashboard/page.tsx
+ │
+ ├── (client)/
+ │     ├── layout.tsx
+ │     └── profile/page.tsx
+
+
+2-A
+app/lab22/dynamic/[id]/page.tsx
+
+
+2-B
+app/lab22/dynamic-range/[start]/[end]/page.tsx
+url:http://localhost:3000/lab22_DynamicRoute/dynamic-range/10/20
+
+2-C
+app/lab22/pagination/[pageNo]/page.tsx
