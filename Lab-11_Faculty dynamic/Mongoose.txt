@@ -1,4 +1,4 @@
-Mongoose is a library (ODM) that makes working with MongoDB easier and more structured in Node.js applications.
+--Mongoose is a library (ODM) that makes working with MongoDB easier and more structured in Node.js applications.
 
 it Prodives:
 -a schema-based structure

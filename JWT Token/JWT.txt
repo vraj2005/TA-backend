@@ -1,6 +1,6 @@
 JWT is a token-based authentication mechanism used to securely transmit user information between client and server.
 
-3 parts
+JWT is divided into 3 parts
 HEADER-token type and algorithum
 PAYLOAD-user information(user ID, role, etc)
 SIGNATURE-protects the token from being changed
@@ -24,20 +24,19 @@ Developers like JWT because it is:
 Fact:
 JWT is encoded, not encrypted. So never store sensitive information inside a JWT while building applications.
 
-Flow
+->Flow
 Client → Login → Server
 Server → JWT Token → Client
 Client → Request + Token → Server
 Server → Verify Token → Allow / Deny
 
-npm install jsonwebtoken
+command to install: npm install jsonwebtoken
 
-How it works in Ecommerce 
-
-User Login
-Server verifies user
-JWT Token generated
-Token stored in client
-Token sent with every request
-Server verifies token
-Allow access (cart, orders, payment)
+How it works in Ecommerce:-
+-User Login
+-Server verifies user
+-JWT Token generated
+-Token stored in client
+-Token sent with every request
+-Server verifies token
+-Allow access (cart, orders, payment)

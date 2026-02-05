@@ -1,6 +1,7 @@
 1. What is a Route Group in Next.js?**
 
-A Route Group is a folder wrapped in round brackets ( ) that is used to organize routes and apply layouts without affecting the URL.
+A Route Group is a folder wrapped in round brackets ( ) that is used to organize routes and 
+apply layouts without affecting the URL.
 
 --Route group folder name does NOT appear in the browser URL.
 
@@ -94,7 +95,8 @@ app/
            └── page.tsx
 
 page.tsx
-export default function UserPage({ params }: { params: { id: string } }) {
+export default function UserPage
+({ params }: { params: Promise<{ id: string }> }) {
   return <h1>User ID: {params.id}</h1>;
 }
 
@@ -116,7 +118,7 @@ page.tsx
 export default function RangePage({
   params,
 }: {
-  params: { start: string; end: string };
+  params: Promise<{ start: string; end: string }>
 }) {
   return (
     <h1>
@@ -186,7 +188,10 @@ const { id } = await params;
 
 
 
-Lab-22 1-A
+Lab-22 Route group and dynamic route folder structure
+
+Route group
+1-A
 app/lab22/
  ├── (auth)/
  │     └── login/
@@ -211,7 +216,7 @@ app/lab22/
  │     ├── layout.tsx
  │     └── profile/page.tsx
 
-
+Dynamic Route
 2-A
 app/lab22/dynamic/[id]/page.tsx
 

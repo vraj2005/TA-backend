@@ -1,5 +1,4 @@
-Middleware is a function that runs between the request and the
-response.
+Middleware is a function that runs between the request and the response.
 
 Request → Middleware → Route → Response
 
@@ -11,10 +10,10 @@ Example
     next();
 });
 
-next() → passes control to next middleware or route
-If next() is NOT called → request stops
+-next() → passes control to next middleware or route
+-If next() is NOT called → request stops
 
-Middleware is used to:
+->Middleware is used to:
 -log requests
 -parse request body
 -authentication & authorization
@@ -22,12 +21,14 @@ Middleware is used to:
 -handle errors
 -modify request/response
 
-Type of Middleware
+**Type of Middleware**
 -->Built-in Middleware Example
 app.use(express.json());
 
 Parses JSON request body
 Makes req.body available
+
+
 
 -->Custom Middleware (Application-level)
 const express = require("express");
@@ -51,6 +52,8 @@ app.get("/about", (req, res) => {
 app.listen(3000, () => {
     console.log("Server running");
 });
+
+
 
 
 --> Route-level Middleware
