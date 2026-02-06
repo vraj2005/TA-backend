@@ -1,0 +1,92 @@
+1. Intercepting Route in Next.js
+
+Definition:-
+An Intercepting Route allows you to show another route’s content inside the current page UI
+(without fully navigating away).
+
+-Mostly used to open modals, popups, or overlays
+-Background page remains visible
+
+Simple Meaning: Open a page on top of another page instead of replacing it.
+
+
+->Real-World Example: Instagram / Facebook
+
+When you click a post from the feed:
+* It opens as a modal popup
+* Feed remains in background
+* URL changes
+* Refreshing the page → opens full page post
+
+This is exactly Intercepting Route behavior.
+
+
+Folder Idea (Concept)
+
+feed page → background
+photo page → full page
+modal photo → intercepted inside feed
+
+
+Why we use Intercepting Routes
+
+-Show modal without losing context
+-Better user experience
+-Faster navigation
+-Keep background state (scroll position, etc.)
+
+One-line Exam Answer (Intercepting Route)
+
+> Intercepting routes in Next.js allow displaying a route’s content inside another route (such as a modal) without leaving the current page.
+
+2. Route Handler in Next.js
+
+Definition:-A Route Handler is used to "create backend API endpoints" inside a Next.js application.
+
+It works like:
+
+-Express.js routes
+-REST API endpoints
+-Server-side logic handler
+
+Where it exists:-
+app/api/hello/route.ts
+
+
+Supports HTTP methods:
+
+* `GET`
+* `POST`
+* `PUT`
+* `DELETE`
+
+Real-World Example: E-commerce Website
+
+When you:
+* View products → **GET /api/products**
+* Add product → **POST /api/products**
+* Update product → **PUT /api/products**
+* Delete product → **DELETE /api/products**
+
+These APIs are created using Route Handlers.
+
+Why Route Handlers are used
+
+✔ Build backend inside Next.js
+✔ Handle database operations
+✔ Create REST APIs
+✔ Process form submissions
+✔ Authentication & data fetching
+
+One-line Exam Answer (Route Handler)
+
+> A route handler in Next.js is used to create server-side API endpoints that handle HTTP requests such as GET, POST, PUT, and DELETE.
+
+Difference Between Intercepting Route & Route Handler
+
+| Feature   | Intercepting Route     | Route Handler        |
+| --------- | ---------------------- | -------------------- |
+| Purpose   | UI navigation behavior | Backend API logic    |
+| Works on  | Pages & modals         | Server endpoints     |
+| User sees | Modal / overlay        | JSON response        |
+| Example   | Instagram post modal   | `/api/products` CRUD |

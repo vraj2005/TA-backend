@@ -8,7 +8,7 @@ export default async function PaginationPage({
   const page = Number(pageNo);
   const startIndex = (page - 1) * 10;
   const endIndex = page * 10 - 1;
-
+  
   return (
     <div>
       <h2>Pagination Example</h2>
