@@ -40,3 +40,5 @@ How it works in Ecommerce:-
 -Token sent with every request
 -Server verifies token
 -Allow access (cart, orders, payment)
+
+->JWT (JSON Web Token), “Bearer” is an authentication scheme used in HTTP requests.
