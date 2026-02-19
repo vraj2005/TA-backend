@@ -14,7 +14,7 @@ How does JWT work?
 5. If the token is valid, access is granted. If not, access is denied.
 
 Developers like JWT because it is:
-
+    
 1. Stateless
 2. Lightweight
 3. Widely supported
@@ -41,4 +41,6 @@ How it works in Ecommerce:-
 -Server verifies token
 -Allow access (cart, orders, payment)
 
-->JWT (JSON Web Token), “Bearer” is an authentication scheme used in HTTP requests.
+
+
+JWT (JSON Web Token), “Bearer” is an authentication scheme used in HTTP requests.

@@ -1,0 +1,57 @@
+-----For MySQl-----
+npm install mysql2
+
+->lib/mysql.ts
+import mysql from "mysql2/promise";
+export const db = await mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "",
+  database: "lab26",
+});
+
+->app/lab26/mysql/page.tsx
+import { db } from "@/lib/mysql";
+
+-----PostgreSQL-----
+npm install pg
+
+->lib/postgres.ts
+import { Client } from "pg";
+export const pgClient = new Client({
+  host: "localhost",
+  user: "postgres",
+  password: "postgres", // change if needed
+  database: "lab26",
+  port: 5432,
+});
+pgClient.connect();
+
+->app/lab26/postgres/page.tsx
+import { pgClient } from "@/lib/postgres";
+import { NextResponse } from "next/server";
+export async function GET() {
+  const result = await pgClient.query("SELECT * FROM users");
+  return NextResponse.json(result.rows);
+}
+
+-----MongoDB-----
+npm install mongodb
+
+->lib/mongo.ts
+import { MongoClient } from "mongodb";
+
+const uri = "mongodb://127.0.0.1:27017";
+const client = new MongoClient(uri);
+
+export const db = client.db("lab26");
+
+
+->app/lab26/mongo/api/route.ts
+import { db } from "@/lib/mongo";
+import { NextResponse } from "next/server";
+
+export async function GET() {
+  const users = await db.collection("users").find().toArray();
+  return NextResponse.json(users);
+}
