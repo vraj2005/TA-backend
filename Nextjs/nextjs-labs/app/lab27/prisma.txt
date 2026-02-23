@@ -1,0 +1,53 @@
+1 — Install Prisma
+-->npm install prisma --save-dev
+
+This installs the Prisma CLI (Command Line Tool).
+-It is used for:
+-npx prisma init
+-npx prisma generate
+-npx prisma db pull
+-npx prisma migrate dev
+-npx prisma studio
+It helps you create schema, generate client, manage database.
+
+Why --save-dev?
+Prisma CLI is used only during development
+It is NOT needed in production server
+
+-->npm install @prisma/client
+What is @prisma/client?
+This is the actual database client used in your code.
+
+import { PrismaClient } from "@prisma/client";
+prisma.user.findMany()
+prisma.user.findUnique()
+prisma.task.create()
+
+-->npm install prisma@6 @prisma/client@6  
+
+2 — Initialize Prisma
+npx prisma init
+
+prisma/
+   schema.prisma
+.env
+
+3 — Configure Database in .env
+mysql://root:password@localhost:3306/lab26
+
+4 — Define Prisma Schema
+prisma/schema.prisma
+
+5 — Generate Prisma Client
+-->npx prisma generate:-It generates Prisma Client based on your schema.prisma.
+-->npx prisma db pull:-
+It reads your existing database tables
+and updates your schema.prisma automatically.
+-->npx prisma db push
+
+6 — Create Prisma Client File
+lib/prisma.ts   
+
+import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient({});
+export { prisma };
