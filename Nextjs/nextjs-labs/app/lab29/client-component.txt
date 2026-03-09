@@ -1,0 +1,26 @@
+What is a Client Component?
+
+A Client Component is a component that runs in the browser (client side) instead of the server.
+
+It allows:
+-React hooks (useState, useEffect)
+-Event handling (onClick, onChange)
+-User interaction
+-Dynamic UI updates
+
+To create it, we add this at the top:
+"use client";
+
+Why Client Components are needed?
+
+By default in Next.js App Router, components are: Server Components
+
+->Server components:
+-run on the server
+-cannot use hooks
+-cannot handle browser events
+
+So when we need interactive UI, we use Client Components.
+
+without client component
+React Hook "useState" is not supported in Server Components

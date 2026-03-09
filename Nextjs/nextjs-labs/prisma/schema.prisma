@@ -23,3 +23,9 @@ model users {
   UserName String @db.VarChar(50)
   task     task[]
 }
+
+model user {
+  UserID   Int    @id @default(autoincrement())
+  UserName String @db.VarChar(50)
+  Password String @db.VarChar(10)
+}
