@@ -1,0 +1,54 @@
+WARNING MONGODB IS NOT SUPPORTED IN PRISMA7
+
+Step 01: Installing dependencies 
+
+npm i prisma --save-dev   
+npm install @prisma/client @prisma/adapter-mariadb
+
+
+Step 02: Initialise prisma
+
+npx prisma init 
+
+
+Step 03: Setting provider in schema.prisma file
+
+datasource db {
+  provider = "mysql"
+}
+
+Step 04: Setting environment variables in .env file
+
+DATABASE_URL="mysql://user:pass@host:port/db_name"
+DB_USER="root"
+DB_PASS=""
+DB_HOST="localhost"
+DB_NAME="demodb"
+
+
+Step 05: Pull schema from database
+
+npx prisma db pull
+
+Step 06: Generate Prisma Client
+
+npx prisma generate
+
+
+Step 07: Create an adepter for prisma client
+
+import { PrismaMariaDb } from "@prisma/adapter-mariadb";
+import { PrismaClient } from “generated prisma folder”;
+
+const adapter = new PrismaMariaDb({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  port: Number(process.env.DB_PORT),
+  database: process.env.DB_NAME,
+  connectionLimit: 5,
+});
+
+const prisma = new PrismaClient({ adapter });
+
+export { prisma };
