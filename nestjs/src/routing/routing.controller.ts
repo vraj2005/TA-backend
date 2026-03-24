@@ -45,10 +45,9 @@ export class RoutingController {
 
     //prime number generator using route parameters
     @Get('prime/:start/:end')
-    getPrime(@Param('start') start: Number, @Param('end') end: Number) {
-
+    getPrime(@Param('start') start: number, @Param('end') end: number) {
         let primes: number[] = [];
-        for(let i = Number(start); i <= Number(end); i++){
+        for(let i = start; i <= end; i++){
             let isPrime = true;
             if(i < 2) continue;
             for(let j = 2; j <= Math.sqrt(i); j++){

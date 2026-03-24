@@ -1,0 +1,232 @@
+Lab 17 – Creating NestJS API
+
+We build:
+1. Student API (MySQL)
+2. Authentication (Register/Login)
+3. Forgot Password
+
+Step 1 – Install Required Packages
+npm install @nestjs/typeorm typeorm mysql2
+npm install @nestjs/jwt passport-jwt @nestjs/passport passport bcrypt
+npm install class-validator class-transformer
+
+Step 2 – Configure MySQL (TypeORM)
+app.module.ts
+import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { Student } from './student/student.entity';
+
+@Module({
+  imports: [
+    TypeOrmModule.forRoot({
+      type: 'mysql',
+      host: 'localhost',
+      port: 3306,
+      username: 'root',
+      password: '',
+      database: 'nestjs_db',
+      entities: [Student],
+      synchronize: true,
+    }),
+  ],
+})
+export class AppModule {}
+
+-----Student Resource (Compulsory)-----
+Command:nest g resource student
+Select:Transport layer → REST API  
+CRUD → Yes
+
+-----Student API (MySQL)-----
+==>student.entity.ts
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+
+@Entity()
+export class Student {
+
+  @PrimaryGeneratedColumn()
+  StudentID: number;
+
+  @Column()
+  StudentName: string;
+
+  @Column()
+  StudentAge: number;
+
+  @Column()
+  StudentGender: string;
+
+  @Column()
+  StudentRollNo: string;
+
+  @Column()
+  StudentSemester: number;
+
+}
+
+==>student.service.ts
+import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Student } from './student.entity';
+import { Repository } from 'typeorm';
+
+@Injectable()
+export class StudentService {
+
+  constructor(
+    @InjectRepository(Student)
+    private studentRepo: Repository<Student>,
+  ) {}
+
+  findAll() {
+    return this.studentRepo.find();
+  }
+
+  findOne(id: number) {
+    return this.studentRepo.findOneBy({ StudentID: id });
+  }
+
+  create(data: any) {
+    return this.studentRepo.save(data);
+  }
+
+  update(id: number, data: any) {
+    return this.studentRepo.update(id, data);
+  }
+
+  delete(id: number) {
+    return this.studentRepo.delete(id);
+  }
+
+}
+
+==>student.controller.ts
+import { Controller, Get, Post, Body, Param, Put, Delete } from '@nestjs/common';
+import { StudentService } from './student.service';
+
+@Controller('student')
+export class StudentController {
+
+  constructor(private readonly studentService: StudentService) {}
+
+  @Get()
+  findAll() {
+    return this.studentService.findAll();
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: number) {
+    return this.studentService.findOne(+id);
+  }
+
+  @Post()
+  create(@Body() body: any) {
+    return this.studentService.create(body);
+  }
+
+  @Put(':id')
+  update(@Param('id') id: number, @Body() body: any) {
+    return this.studentService.update(+id, body);
+  }
+
+  @Delete(':id')
+  delete(@Param('id') id: number) {
+    return this.studentService.delete(+id);
+  }
+
+}
+
+
+
+-----Auth Resource (For Login/Register)-----
+Command:nest g resource auth
+Select:REST API  
+CRUD → No (important ⚠️)
+
+You need:
+POST /auth/register
+POST /auth/login
+POST /auth/forgot
+So you manually create methods instead of CRUD.
+
+
+-----Authentication API (Register + Login)-----
+==>user.entity.ts
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+
+@Entity()
+export class User {
+
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @Column()
+  email: string;
+
+  @Column()
+  password: string;
+
+}
+
+==>auth.service.ts
+import { Injectable } from '@nestjs/common';
+import * as bcrypt from 'bcrypt';
+
+@Injectable()
+export class AuthService {
+
+  private users = [];
+
+  async register(data: any) {
+    const hashed = await bcrypt.hash(data.password, 10);
+    const user = {
+      id: Date.now(),
+      email: data.email,
+      password: hashed
+    };
+    this.users.push(user);
+    return "User Registered";
+  }
+  async login(data: any) {
+    const user = this.users.find(u => u.email === data.email);
+    if (!user) return "User not found";
+    const isMatch = await bcrypt.compare(data.password, user.password);
+    if (!isMatch) return "Invalid Password";
+    return "Login Successful";
+  }
+
+}
+
+==>auth.controller.ts
+import { Controller, Post, Body } from '@nestjs/common';
+import { AuthService } from './auth.service';
+
+@Controller('auth')
+export class AuthController {
+  constructor(private readonly authService: AuthService) {}
+  @Post('register')
+  register(@Body() body: any) {
+    return this.authService.register(body);
+  }
+  @Post('login')
+  login(@Body() body: any) {
+    return this.authService.login(body);
+  }
+
+}
+
+-----Forgot Password API-----
+auth.service.ts (Add this method)
+async forgotPassword(email: string) {
+  const user = this.users.find(u => u.email === email);
+  if (!user) return "User not found";
+  const newPassword = "123456"; // demo
+  user.password = await bcrypt.hash(newPassword, 10);
+  return "New Password is 123456";
+}
+
+==>auth.controller.ts (Add endpoint)
+@Post('forgot')
+forgot(@Body('email') email: string) {
+  return this.authService.forgotPassword(email);
+}
