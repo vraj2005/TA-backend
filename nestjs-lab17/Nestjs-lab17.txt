@@ -17,7 +17,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Student } from './student/student.entity';
 
 @Module({
-  imports: [
+  imports: [`
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
